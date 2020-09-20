@@ -1,0 +1,10 @@
+#!/bin/bash
+
+touch proj_main.cpp	
+make proj_main.test
+rm input.txt.bz2
+
+../../../pin -t obj-intel64/proj_main.so -prof -- ./bzip2 -k -f input.txt >proj_err 2>&1
+time ../../../pin -t obj-intel64/proj_main.so -opt 10 -- ./bzip2 -k -f input-long.txt 
+#gedit proj_err &
+#libreoffice loop-count.csv &
